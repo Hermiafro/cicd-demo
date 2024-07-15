@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="888fe253-115b-4572-adb2-e8faf752f948" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="pat-employeesFlow" doc:id="79b1d4a9-c6c5-41ad-8238-3a5cb83cb25c" >
+		<http:listener doc:name="/emp" doc:id="b7b26a66-4d6a-47ba-9970-21193255ed7e" path="/emp" config-ref="HTTP_Listener_config"/>
+		<ee:transform doc:name="employeesDB" doc:id="2ffaaed6-5c2b-4b93-8252-2410d9ad76f6" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+[
+	 {
+        "First Name": "Hermi",
+        "Last Name": "Bulcha",
+        "City": "Miami",
+        "State": "FL",
+        "Address": "111 Ocean Dr",
+        "Age": 36,
+        "Gender": "Male"
+    },
+    {
+        "First Name": "Lila",
+        "Last Name": "Bulcha",
+        "City": "Atlanta",
+        "State": "GA",
+        "Address": "222 Peachtree St",
+        "Age": 29,
+        "Gender": "Female"
+    },
+    {
+        "First Name": "Betty",
+        "Last Name": "Haile",
+        "City": "Denver",
+        "State": "CO",
+        "Address": "333 Mountain Rd",
+        "Age": 43,
+        "Gender": "Female"
+    },
+    {
+        "First Name": "Nebi",
+        "Last Name": "Melaku",
+        "City": "Austin",
+        "State": "TX",
+        "Address": "444 Lakeshore Dr",
+        "Age": 34,
+        "Gender": "Male"
+    },
+    {
+        "First Name": "Tame",
+        "Last Name": "Jules",
+        "City": "Seattle",
+        "State": "WA",
+        "Address": "555 Pine St",
+        "Age": 38,
+        "Gender": "Male"
+    },
+    {
+        "First Name": "Lidu",
+        "Last Name": "Jules",
+        "City": "Portland",
+        "State": "OR",
+        "Address": "666 Rose Ave",
+        "Age": 27,
+        "Gender": "Female"
+    },
+    {
+        "First Name": "Sosi",
+        "Last Name": "Zike",
+        "City": "Las Vegas",
+        "State": "NV",
+        "Address": "777 Strip Blvd",
+        "Age": 31,
+        "Gender": "Female"
+    },
+    {
+        "First Name": "Nati",
+        "Last Name": "Zike",
+        "City": "Boston",
+        "State": "MA",
+        "Address": "888 Freedom Trl",
+        "Age": 45,
+        "Gender": "Male"
+    },
+
+    {
+        "First Name": "John",
+        "Last Name": "Doe",
+        "City": "Los Angeles",
+        "State": "CA",
+        "Address": "123 Main St",
+        "Age": 34,
+        "Gender": "Male"
+    },
+    {
+        "First Name": "Jane",
+        "Last Name": "Smith",
+        "City": "New York",
+        "State": "NY",
+        "Address": "456 Oak Ave",
+        "Age": 28,
+        "Gender": "Female"
+    },
+    {
+        "First Name": "Michael",
+        "Last Name": "Johnson",
+        "City": "Chicago",
+        "State": "IL",
+        "Address": "789 Pine St",
+        "Age": 45,
+        "Gender": "Male"
+    },
+    {
+        "First Name": "Emily",
+        "Last Name": "Davis",
+        "City": "Houston",
+        "State": "TX",
+        "Address": "101 Maple Rd",
+        "Age": 32,
+        "Gender": "Female"
+    },
+    {
+        "First Name": "Robert",
+        "Last Name": "Brown",
+        "City": "Phoenix",
+        "State": "AZ",
+        "Address": "202 Elm St",
+        "Age": 50,
+        "Gender": "Male"
+    },
+    {
+        "First Name": "Sarah",
+        "Last Name": "Wilson",
+        "City": "Philadelphia",
+        "State": "PA",
+        "Address": "303 Cedar Ave",
+        "Age": 27,
+        "Gender": "Female"
+    },
+    {
+        "First Name": "David",
+        "Last Name": "Martinez",
+        "City": "San Antonio",
+        "State": "TX",
+        "Address": "404 Spruce St",
+        "Age": 39,
+        "Gender": "Male"
+    },
+    {
+        "First Name": "Laura",
+        "Last Name": "Anderson",
+        "City": "San Diego",
+        "State": "CA",
+        "Address": "505 Birch Rd",
+        "Age": 31,
+        "Gender": "Female"
+    },
+    {
+        "First Name": "James",
+        "Last Name": "Taylor",
+        "City": "Dallas",
+        "State": "TX",
+        "Address": "606 Fir St",
+        "Age": 42,
+        "Gender": "Male"
+    },
+    {
+        "First Name": "Lisa",
+        "Last Name": "Moore",
+        "City": "San Jose",
+        "State": "CA",
+        "Address": "707 Pine Rd",
+        "Age": 29,
+        "Gender": "Female"
+    }
+]
+]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
